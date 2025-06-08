@@ -41,24 +41,24 @@ public class TRY extends OpMode {
     private PathChain line12 = new PathChain(
             line1,line2
     );
-    private final Pose startPose = new Pose(0,0, Math.toRadians(0));
+    private final Pose startPose = new Pose(72,72, Math.toRadians(0));
     @Override
     public void init() {
         Constants.setConstants(FConstants.class, LConstants.class);
         follower = new Follower(hardwareMap);
         follower.setStartingPose(startPose);
         path = follower.pathBuilder()
-                .addPath(line1)
-                .setLinearHeadingInterpolation(Math.toRadians(0), Math.toRadians(0))
                 .addPath(
                         new BezierCurve(
-                                new Point(42.511, 56.289, Point.CARTESIAN),
-                                new Point(27.557, 53.937, Point.CARTESIAN),
-                                new Point(28.901, 70.572, Point.CARTESIAN)
+                                new Point(72.000, 72.000, Point.CARTESIAN),
+                                new Point(44.359, 45.368, Point.CARTESIAN),
+                                new Point(80.317, 107.370, Point.CARTESIAN),
+                                new Point(39.991, 81.662, Point.CARTESIAN)
                         )
-                ).setLinearHeadingInterpolation(Math.toRadians(0), Math.toRadians(0))
+                )
                 .setLinearHeadingInterpolation(Math.toRadians(0), Math.toRadians(0))
                 .build();
+
         follower.followPath(path);
 
         telemetryA = new MultipleTelemetry(this.telemetry, FtcDashboard.getInstance().getTelemetry());
