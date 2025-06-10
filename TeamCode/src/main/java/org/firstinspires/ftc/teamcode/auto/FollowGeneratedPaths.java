@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.auto;
 
 import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
@@ -6,6 +6,7 @@ import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
 import com.pedropathing.follower.Follower;
 import com.pedropathing.localization.Pose;
 import com.pedropathing.pathgen.BezierCurve;
+import com.pedropathing.pathgen.BezierLine;
 import com.pedropathing.pathgen.PathBuilder;
 import com.pedropathing.pathgen.PathChain;
 import com.pedropathing.pathgen.Point;
@@ -35,7 +36,7 @@ public class FollowGeneratedPaths extends OpMode {
         dashboard = FtcDashboard.getInstance();
 
         // Set starting pose to first point of line1
-        follower.setStartingPose(new Pose(0, 0, Math.toRadians(0)));
+        follower.setStartingPose(new Pose(18, 131, Math.toRadians(-24)));
 
         // Start with the first path
         follower.followPath(K.line1);
@@ -60,29 +61,53 @@ public class FollowGeneratedPaths extends OpMode {
     }
 
     // Static class containing generated paths
-    static class K {
+    public static class K {
+
         public static PathBuilder builder = new PathBuilder();
 
         public static PathChain line1 = builder
                 .addPath(
                         new BezierCurve(
-                                new Point(72.000 - 72, 72.000 - 72, Point.CARTESIAN),
-                                new Point(44.359 - 72, 45.368 - 72, Point.CARTESIAN),
-                                new Point(39.991 - 72, 81.662 - 72, Point.CARTESIAN)
+                                new Point(18.000, 131.000, Point.CARTESIAN),
+                                new Point(66.000, 110.000, Point.CARTESIAN),
+                                new Point(66.000, 95.000, Point.CARTESIAN)
                         )
                 )
-                .setLinearHeadingInterpolation(Math.toRadians(0), Math.toRadians(0))
+                .setTangentHeadingInterpolation()
                 .build();
 
         public static PathChain line2 = builder
                 .addPath(
                         new BezierCurve(
-                                new Point(39.991 - 72, 81.662 - 72, Point.CARTESIAN),
-                                new Point(39.151 - 72, 124.509 - 72, Point.CARTESIAN),
-                                new Point(132.000 - 72, 102.000 - 72, Point.CARTESIAN)
+                                new Point(66.000, 95.000, Point.CARTESIAN),
+                                new Point(66.000, 110.000, Point.CARTESIAN),
+                                new Point(18.000, 131.000, Point.CARTESIAN)
                         )
                 )
-                .setLinearHeadingInterpolation(Math.toRadians(0), Math.toRadians(0))
+                .setTangentHeadingInterpolation()
+                .setReversed(true)
+                .build();
+
+        public static PathChain line3 = builder
+                .addPath(
+                        new BezierLine(
+                                new Point(18.000, 131.000, Point.CARTESIAN),
+                                new Point(12.000, 40.000, Point.CARTESIAN)
+                        )
+                )
+                .setLinearHeadingInterpolation(Math.toRadians(-24), Math.toRadians(-90))
+                .build();
+
+        public static PathChain line4 = builder
+                .addPath(
+                        new BezierLine(
+                                new Point(12.000, 40.000, Point.CARTESIAN),
+                                new Point(12.000, 127.000, Point.CARTESIAN)
+                        )
+                )
+                .setLinearHeadingInterpolation(Math.toRadians(-90), Math.toRadians(-60))
+                .setReversed(true)
                 .build();
     }
+
 }
